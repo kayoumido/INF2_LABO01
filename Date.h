@@ -5,6 +5,7 @@
 #ifndef DATE_H
 #define DATE_H
 
+#include <string>
 enum class Month {
     JANUARY = 1,
     FEBRUARY = 2,
@@ -26,9 +27,17 @@ public:
     Date(unsigned, unsigned, unsigned);
     Date(unsigned, Month, unsigned);
 
+    void setDay(const unsigned& DAY);
+    void setMonth(const unsigned& MONTH);
     void setMonth(Month m);
+    void setMonth(const std::string& MONTH);
+    void setYear(const unsigned& YEAR);
 
+    unsigned getDay() const;
+    unsigned getMonth() const;
     Month getMonthEnum();
+    std::string getMonthString() const;
+    unsigned getYear() const;
 
 private:
     unsigned day;

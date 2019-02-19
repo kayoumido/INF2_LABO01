@@ -3,6 +3,13 @@
  */
 
 #include "Date.h"
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+
+const vector<string> STR_MONTHS {"january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"};
 
 Date::Date(unsigned d, unsigned m, unsigned y) {
     day = d;
@@ -20,10 +27,30 @@ Date::Date(unsigned d, Month m, unsigned y) {
     correct = isCorrect();
 }
 
+void Date::setDay(const unsigned& DAY) {
+    day = DAY;
+}
+void Date::setMonth(const unsigned& MONTH) {
+    month = MONTH;
+}
 void Date::setMonth(Month m) {
     month = (unsigned)m;
 }
+void Date::setMonth(const string& MONTH) {
+    vector<string>::const_iterator it =  find(STR_MONTHS.cbegin(), STR_MONTHS.cend(), MONTH);
+    month = (unsigned)distance(STR_MONTHS.begin(), it) + 1;
+}
+void Date::setYear(const unsigned& YEAR) {
+    year = YEAR;
+}
 
+
+unsigned Date::getDay() const {
+    return day;
+}
+unsigned Date::getMonth() const {
+    return month;
+}
 Month Date::getMonthEnum() {
     switch (month) {
         case 1:
@@ -52,6 +79,13 @@ Month Date::getMonthEnum() {
             return Month::DECEMBER;
     }
 }
+string Date::getMonthString() const {
+    return STR_MONTHS.at(month - 1);
+}
+unsigned Date::getYear() const {
+    return day;
+}
+
 
 bool Date::isCorrect() {
     return true;
