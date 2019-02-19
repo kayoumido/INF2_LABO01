@@ -28,6 +28,8 @@ public:
 
     void setMonth(Month m);
 
+    Month getMonthEnum();
+
 private:
     unsigned day;
     unsigned month;
