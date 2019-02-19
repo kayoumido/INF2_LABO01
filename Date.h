@@ -6,6 +6,7 @@
 #define DATE_H
 
 #include <string>
+
 enum class Month {
     JANUARY = 1,
     FEBRUARY = 2,

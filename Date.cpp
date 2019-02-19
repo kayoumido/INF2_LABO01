@@ -8,8 +8,8 @@
 
 using namespace std;
 
-
 const vector<string> STR_MONTHS {"january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"};
+
 
 Date::Date(unsigned d, unsigned m, unsigned y) {
     day = d;
@@ -26,6 +26,7 @@ Date::Date(unsigned d, Month m, unsigned y) {
 
     correct = isCorrect();
 }
+
 
 void Date::setDay(const unsigned& DAY) {
     day = DAY;
@@ -83,7 +84,7 @@ string Date::getMonthString() const {
     return STR_MONTHS.at(month - 1);
 }
 unsigned Date::getYear() const {
-    return day;
+    return year;
 }
 
 
