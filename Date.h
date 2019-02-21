@@ -24,9 +24,14 @@ enum class Month {
 
 class Date {
 public:
-    Date() : day(1), month(1), year(1970) {};
-    Date(unsigned, unsigned, unsigned);
-    Date(unsigned, Month, unsigned);
+    static const unsigned MIN_YEAR = 1852;
+    static const unsigned FIRST_MONTH = 1;
+    static const unsigned LAST_MONTH = 12;
+
+
+    Date();
+    Date(unsigned d, unsigned m, unsigned y);
+    Date(unsigned d, Month m, unsigned y);
 
     void setDay(const unsigned& DAY);
     void setMonth(const unsigned& MONTH);
@@ -47,6 +52,27 @@ private:
     bool correct;
 
     bool isCorrect();
+
+    /**
+     * @brief Determines if a given year is a leap year or a common year
+     *
+     * If the year is divisible by 4 and not divisible by 100 or
+     * if the year is divisible by 400, then it's a leap year
+     * (all divisions are integer divisions)
+     * All the other cases, it's a common year
+     *
+     * @param year unsigned The year which will be checked
+     * @return bool Is or isn't a leap year
+     */
+    bool isLeapYear();
+
+    /**
+     * @brief Return the total number of days contain in the month of a specific year
+     *
+     * @param monthIndex
+     * @return The total number of days contains in the month
+     */
+    unsigned getMonthLength();
 };
 
 

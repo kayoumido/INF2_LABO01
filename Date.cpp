@@ -8,8 +8,10 @@
 
 using namespace std;
 
-const vector<string> STR_MONTHS {"january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"};
+const vector<string> STR_MONTHS{"january", "february", "march", "april", "may", "june", "july", "august", "september",
+                                "october", "november", "december"};
 
+Date::Date() : day(1), month(1), year(1970), correct(true) {}
 
 Date::Date(unsigned d, unsigned m, unsigned y) {
     day = d;
@@ -28,20 +30,24 @@ Date::Date(unsigned d, Month m, unsigned y) {
 }
 
 
-void Date::setDay(const unsigned& DAY) {
+void Date::setDay(const unsigned &DAY) {
     day = DAY;
 }
-void Date::setMonth(const unsigned& MONTH) {
+
+void Date::setMonth(const unsigned &MONTH) {
     month = MONTH;
 }
-void Date::setMonth(const Month& m) {
-    month = (unsigned)m;
+
+void Date::setMonth(const Month &m) {
+    month = (unsigned) m;
 }
-void Date::setMonth(const string& MONTH) {
-    vector<string>::const_iterator it =  find(STR_MONTHS.cbegin(), STR_MONTHS.cend(), MONTH);
-    month = (unsigned)distance(STR_MONTHS.begin(), it) + 1;
+
+void Date::setMonth(const string &MONTH) {
+    vector<string>::const_iterator it = find(STR_MONTHS.cbegin(), STR_MONTHS.cend(), MONTH);
+    month = (unsigned) distance(STR_MONTHS.begin(), it) + 1;
 }
-void Date::setYear(const unsigned& YEAR) {
+
+void Date::setYear(const unsigned &YEAR) {
     year = YEAR;
 }
 
@@ -49,9 +55,11 @@ void Date::setYear(const unsigned& YEAR) {
 unsigned Date::getDay() const {
     return day;
 }
+
 unsigned Date::getMonth() const {
     return month;
 }
+
 Month Date::getMonthEnum() const {
     switch (month) {
         case 1:
@@ -80,14 +88,42 @@ Month Date::getMonthEnum() const {
             return Month::DECEMBER;
     }
 }
+
 string Date::getMonthString() const {
     return STR_MONTHS.at(month - 1);
 }
+
 unsigned Date::getYear() const {
     return year;
 }
 
-
 bool Date::isCorrect() {
-    return true;
+    return  day >= 1 and day < getMonthLength() and
+            month >= Date::FIRST_MONTH and
+            month <= LAST_MONTH and
+            year >= Date::MIN_YEAR;
+}
+
+bool Date::isLeapYear() {
+    return ((year % 4 == 0) && year % 100 != 0) || year % 400 == 0;
+}
+
+unsigned Date::getMonthLength() {
+    unsigned totalDaysInMonth;
+
+    if (getMonthEnum() == Month::FEBRUARY) {
+        if (isLeapYear()) {
+            totalDaysInMonth = 29;
+        } else {
+            totalDaysInMonth = 28;
+        }
+    } else if ((month % 2 == 0 && getMonthEnum() < Month::JULY) ||
+               (month % 2 == 1 && getMonthEnum() > Month::JULY)
+            ) {
+        totalDaysInMonth = 30;
+    } else {
+        totalDaysInMonth = 31;
+    }
+
+    return totalDaysInMonth;
 }
