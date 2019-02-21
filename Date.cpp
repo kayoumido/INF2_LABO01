@@ -97,18 +97,32 @@ unsigned Date::getYear() const {
     return year;
 }
 
-bool Date::isCorrect() {
+
+ostream& operator << (ostream& os, const Date& DATE) {
+    if(DATE.isCorrect()) {
+        string strDay = (DATE.day < 10) ? "0" + to_string(DATE.day) : to_string(DATE.day);
+        string strMonth = (DATE.month < 10) ? "0" + to_string(DATE.month) : to_string(DATE.month);
+
+        cout << strDay << "." << strMonth << "." << DATE.year;
+    } else {
+        cout << "invalide";
+    }
+    return os;
+}
+
+
+bool Date::isCorrect() const {
     return  day >= 1 and day < getMonthLength() and
             month >= Date::FIRST_MONTH and
             month <= LAST_MONTH and
             year >= Date::MIN_YEAR;
 }
 
-bool Date::isLeapYear() {
+bool Date::isLeapYear() const {
     return ((year % 4 == 0) && year % 100 != 0) || year % 400 == 0;
 }
 
-unsigned Date::getMonthLength() {
+unsigned Date::getMonthLength() const {
     unsigned totalDaysInMonth;
 
     if (getMonthEnum() == Month::FEBRUARY) {

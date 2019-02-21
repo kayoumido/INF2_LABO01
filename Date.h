@@ -6,6 +6,7 @@
 #define DATE_H
 
 #include <string>
+#include <iostream>
 
 enum class Month {
     JANUARY = 1,
@@ -45,13 +46,15 @@ public:
     std::string getMonthString() const;
     unsigned getYear() const;
 
+    friend std::ostream& operator << (std::ostream& os, const Date& DATE);
+
 private:
     unsigned day;
     unsigned month;
     unsigned year;
     bool correct;
 
-    bool isCorrect();
+    bool isCorrect() const;
 
     /**
      * @brief Determines if a given year is a leap year or a common year
@@ -64,7 +67,7 @@ private:
      * @param year unsigned The year which will be checked
      * @return bool Is or isn't a leap year
      */
-    bool isLeapYear();
+    bool isLeapYear() const ;
 
     /**
      * @brief Return the total number of days contain in the month of a specific year
@@ -72,7 +75,7 @@ private:
      * @param monthIndex
      * @return The total number of days contains in the month
      */
-    unsigned getMonthLength();
+    unsigned getMonthLength() const ;
 };
 
 

@@ -10,9 +10,10 @@ using namespace std;
 
 int main() {
 
-    Date date(4, 7, 1993);
+    Date date(10, 1, 1851);
 
-    cout << "Vore date est : " << date.getDay() << " " << date.getMonthString() << " " << date.getYear() << endl;
+    cout << date << endl;
+
 
     return 0;
 }
