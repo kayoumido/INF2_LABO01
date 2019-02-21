@@ -30,13 +30,13 @@ public:
 
     void setDay(const unsigned& DAY);
     void setMonth(const unsigned& MONTH);
-    void setMonth(Month m);
+    void setMonth(const Month& m);
     void setMonth(const std::string& MONTH);
     void setYear(const unsigned& YEAR);
 
     unsigned getDay() const;
     unsigned getMonth() const;
-    Month getMonthEnum();
+    Month getMonthEnum() const;
     std::string getMonthString() const;
     unsigned getYear() const;
 

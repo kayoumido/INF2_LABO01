@@ -34,7 +34,7 @@ void Date::setDay(const unsigned& DAY) {
 void Date::setMonth(const unsigned& MONTH) {
     month = MONTH;
 }
-void Date::setMonth(Month m) {
+void Date::setMonth(const Month& m) {
     month = (unsigned)m;
 }
 void Date::setMonth(const string& MONTH) {
@@ -52,7 +52,7 @@ unsigned Date::getDay() const {
 unsigned Date::getMonth() const {
     return month;
 }
-Month Date::getMonthEnum() {
+Month Date::getMonthEnum() const {
     switch (month) {
         case 1:
             return Month::JANUARY;
