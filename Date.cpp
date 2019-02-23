@@ -9,8 +9,8 @@
 
 using namespace std;
 
-const vector<string> STR_MONTHS {"january", "february", "march", "april", "may", "june", "july", "august", "september",
-                                 "october", "november", "december"};
+const vector<string> STR_MONTHS{"january", "february", "march", "april", "may", "june", "july", "august", "september",
+                                "october", "november", "december"};
 const string INVALID_MSG = "invalide";
 const char DELIMITER = '.';
 
@@ -100,7 +100,7 @@ unsigned Date::getYear() const {
     return year;
 }
 
-Date& Date::operator =(const Date& date) {
+Date &Date::operator=(const Date &date) {
 
     this->day = date.day;
     this->month = date.month;
@@ -110,7 +110,7 @@ Date& Date::operator =(const Date& date) {
     return *this;
 }
 
-Date& Date::operator ++() {
+Date &Date::operator++() {
 
     day++;
 
@@ -127,7 +127,7 @@ Date& Date::operator ++() {
     return *this;
 }
 
-Date Date::operator ++(int) {
+Date Date::operator++(int) {
     Date temp = *this;
 
     ++*this;
@@ -135,8 +135,21 @@ Date Date::operator ++(int) {
     return temp;
 }
 
-ostream& operator << (ostream& os, const Date& DATE) {
-    if(DATE.correct) {
+Date Date::operator+(const unsigned &day) const {
+    Date temp = *this;
+
+    for (int i = 0; i < day; ++i)
+        ++temp;
+
+    return temp;
+}
+
+Date operator+(unsigned days, const Date &date) {
+    return date + days;
+}
+
+ostream &operator<<(ostream &os, const Date &DATE) {
+    if (DATE.correct) {
         string strDay = (DATE.day < 10) ? "0" + to_string(DATE.day) : to_string(DATE.day);
         string strMonth = (DATE.month < 10) ? "0" + to_string(DATE.month) : to_string(DATE.month);
 
@@ -148,7 +161,7 @@ ostream& operator << (ostream& os, const Date& DATE) {
     return os;
 }
 
-istream& operator >> (istream& is, Date& date) {
+istream &operator>>(istream &is, Date &date) {
     string userInput;
     is >> userInput;
 
@@ -168,14 +181,14 @@ istream& operator >> (istream& is, Date& date) {
             stringstream ssYear(userInput.substr(6, 4));
 
             // Check if day, month, year are integer, and fetch them
-            if(ssDay >> inputDay and ssMonth >> inputMonth and ssYear >> inputYear) {
+            if (ssDay >> inputDay and ssMonth >> inputMonth and ssYear >> inputYear) {
 
                 // Set all data and check if the date is correct
                 date.setDay(inputDay);
                 date.setMonth(inputMonth);
                 date.setYear(inputYear);
 
-                if(date.isCorrect()) {
+                if (date.isCorrect()) {
                     date.correct = true;
                 }
 
@@ -189,10 +202,10 @@ istream& operator >> (istream& is, Date& date) {
 
 
 bool Date::isCorrect() const {
-    return  day >= 1 and day < getMonthLength() and
-            month >= Date::FIRST_MONTH and
-            month <= LAST_MONTH and
-            year >= Date::MIN_YEAR;
+    return day >= 1 and day < getMonthLength() and
+           month >= Date::FIRST_MONTH and
+           month <= LAST_MONTH and
+           year >= Date::MIN_YEAR;
 }
 
 bool Date::isLeapYear() const {
@@ -218,3 +231,4 @@ unsigned Date::getMonthLength() const {
 
     return totalDaysInMonth;
 }
+
