@@ -230,6 +230,10 @@ bool operator >= (const Date& L_DATE, const Date& R_DATE) {
     return !(L_DATE < R_DATE);
 }
 
+bool operator == (const Date& L_DATE, const Date& R_DATE) {
+    return (L_DATE <= R_DATE) and (L_DATE >= R_DATE);
+}
+
 bool Date::isCorrect() const {
     return day >= 1 and day < getMonthLength() and
            month >= Date::FIRST_MONTH and
