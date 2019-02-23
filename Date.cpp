@@ -5,11 +5,14 @@
 #include "Date.h"
 #include <vector>
 #include <algorithm>
+#include <sstream>
 
 using namespace std;
 
-const vector<string> STR_MONTHS{"january", "february", "march", "april", "may", "june", "july", "august", "september",
-                                "october", "november", "december"};
+const vector<string> STR_MONTHS {"january", "february", "march", "april", "may", "june", "july", "august", "september",
+                                 "october", "november", "december"};
+const string INVALID_MSG = "invalide";
+const char DELIMITER = '.';
 
 Date::Date() : day(1), month(1), year(1970), correct(true) {}
 
@@ -99,15 +102,55 @@ unsigned Date::getYear() const {
 
 
 ostream& operator << (ostream& os, const Date& DATE) {
-    if(DATE.isCorrect()) {
+    if(DATE.correct) {
         string strDay = (DATE.day < 10) ? "0" + to_string(DATE.day) : to_string(DATE.day);
         string strMonth = (DATE.month < 10) ? "0" + to_string(DATE.month) : to_string(DATE.month);
 
         cout << strDay << "." << strMonth << "." << DATE.year;
     } else {
-        cout << "invalide";
+        cout << INVALID_MSG;
     }
+
     return os;
+}
+
+istream& operator >> (istream& is, Date& date) {
+    string userInput;
+    is >> userInput;
+
+    // Put the correct flag to false, and if all params are correct, put to true
+    date.correct = false;
+
+    // correct date must be 10 length (dd.mm.yyyy)
+    if (userInput.length() == 10) {
+        // Check the dot position
+        if (userInput.at(2) == DELIMITER and userInput.at(5) == DELIMITER) {
+
+            int inputDay;
+            int inputMonth;
+            int inputYear;
+            stringstream ssDay(userInput.substr(0, 2));
+            stringstream ssMonth(userInput.substr(3, 2));
+            stringstream ssYear(userInput.substr(6, 4));
+
+            // Check if day, month, year are integer, and fetch them
+            if(ssDay >> inputDay and ssMonth >> inputMonth and ssYear >> inputYear) {
+
+                // Set all data and check if the date is correct
+                date.setDay(inputDay);
+                date.setMonth(inputMonth);
+                date.setYear(inputYear);
+
+                if(date.isCorrect()) {
+                    date.correct = true;
+                }
+
+            }
+
+        }
+
+    }
+    return is;
 }
 
 

@@ -10,9 +10,11 @@ using namespace std;
 
 int main() {
 
-    Date date(10, 1, 1851);
 
-    cout << date << endl;
+    Date date2;
+    cin >> date2;
+
+    cout << date2;
 
 
     return 0;

@@ -47,6 +47,7 @@ public:
     unsigned getYear() const;
 
     friend std::ostream& operator << (std::ostream& os, const Date& DATE);
+    friend std::istream& operator >> (std::istream& is, Date& STR_DATE);
 
 private:
     unsigned day;
