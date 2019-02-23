@@ -100,6 +100,40 @@ unsigned Date::getYear() const {
     return year;
 }
 
+Date& Date::operator =(const Date& date) {
+
+    this->day = date.day;
+    this->month = date.month;
+    this->year = date.year;
+    this->correct = date.correct;
+
+    return *this;
+}
+
+Date& Date::operator ++() {
+
+    day++;
+
+    if (day > getMonthLength()) {
+        day = day - getMonthLength();
+        month++;
+
+        if (month > Date::LAST_MONTH) {
+            month = Date::FIRST_MONTH;
+            year++;
+        }
+    }
+
+    return *this;
+}
+
+Date Date::operator ++(int) {
+    Date temp = *this;
+
+    ++*this;
+
+    return temp;
+}
 
 ostream& operator << (ostream& os, const Date& DATE) {
     if(DATE.correct) {
