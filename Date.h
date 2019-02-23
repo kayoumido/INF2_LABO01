@@ -51,7 +51,10 @@ public:
     Date operator +(const unsigned& day) const;
     Date& operator ++();
     Date operator ++(int);
-
+    friend bool operator < (const Date& L_Date, const Date& R_DATE);
+    friend bool operator > (const Date& L_Date, const Date& R_DATE);
+    friend bool operator <= (const Date& L_Date, const Date& R_DATE);
+    friend bool operator >= (const Date& L_Date, const Date& R_DATE);
     friend std::ostream& operator << (std::ostream& os, const Date& DATE);
     friend std::istream& operator >> (std::istream& is, Date& STR_DATE);
     friend Date operator + (unsigned days, const Date& date);

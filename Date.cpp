@@ -200,6 +200,35 @@ istream &operator>>(istream &is, Date &date) {
     return is;
 }
 
+bool operator < (const Date& L_DATE, const Date& R_DATE) {
+    bool result = false;
+
+    if(L_DATE.year < R_DATE.year) {
+        result = true;
+    }else if(L_DATE.year == R_DATE.year) {
+        if(L_DATE.month < R_DATE.month){
+            result = true;
+        }else if(L_DATE.month == R_DATE.month) {
+            if(L_DATE.day < R_DATE.day) {
+                result = true;
+            }
+        }
+    }
+
+    return result;
+}
+
+bool operator > (const Date& L_DATE, const Date& R_DATE) {
+    return R_DATE < L_DATE;
+}
+
+bool operator <= (const Date& L_DATE, const Date& R_DATE) {
+    return !(L_DATE > R_DATE);
+}
+
+bool operator >= (const Date& L_DATE, const Date& R_DATE) {
+    return !(L_DATE < R_DATE);
+}
 
 bool Date::isCorrect() const {
     return day >= 1 and day < getMonthLength() and

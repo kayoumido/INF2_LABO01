@@ -11,10 +11,10 @@ using namespace std;
 int main() {
 
 
-    Date date2;
-    cin >> date2;
+    Date date1(04, 07, 1993);
+    Date date2(05, 07, 1993);
 
-    cout << date2;
+    cout << (date2 >= date1);
 
 
     return 0;
