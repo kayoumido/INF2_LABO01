@@ -148,6 +148,48 @@ Date operator+(unsigned days, const Date &date) {
     return date + days;
 }
 
+Date &Date::operator--() {
+
+    day--;
+
+    if (day == 0) {
+        month--;
+        day = getMonthLength();
+
+        if (month == 0) {
+            year--;
+            month = Date::LAST_MONTH;
+
+            if (year < Date::MIN_YEAR) {
+                correct = false;
+            }
+        }
+    }
+
+    return *this;
+}
+
+Date Date::operator--(int) {
+    Date temp = *this;
+
+    --*this;
+
+    return temp;
+}
+
+Date Date::operator-(const unsigned &day) const {
+    Date temp = *this;
+
+    for (int i = 0; i < day; ++i)
+        --temp;
+
+    return temp;
+}
+
+Date operator-(unsigned days, const Date &date) {
+    return date - days;
+}
+
 ostream &operator<<(ostream &os, const Date &DATE) {
     if (DATE.correct) {
         string strDay = (DATE.day < 10) ? "0" + to_string(DATE.day) : to_string(DATE.day);
@@ -237,7 +279,7 @@ bool operator == (const Date& L_DATE, const Date& R_DATE) {
 bool Date::isCorrect() const {
     return day >= 1 and day < getMonthLength() and
            month >= Date::FIRST_MONTH and
-           month <= LAST_MONTH and
+           month <= Date::LAST_MONTH and
            year >= Date::MIN_YEAR;
 }
 
@@ -264,4 +306,3 @@ unsigned Date::getMonthLength() const {
 
     return totalDaysInMonth;
 }
-
