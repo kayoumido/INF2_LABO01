@@ -25,10 +25,28 @@ enum class Month {
 
 class Date {
 public:
+
+    /**
+     * @brief Default constructor
+     */
     Date();
 
+    /**
+     * @brief Constructor with unsigned values
+     *
+     * @param d day of the date
+     * @param m month of the date
+     * @param y year of the date
+     */
     Date(unsigned d, unsigned m, unsigned y);
 
+    /**
+     * @brief Constrcutoe with unsigned values and enum for the month
+     *
+     * @param d day of the date
+     * @param m month of the date as a Month enum
+     * @param y year of the date
+     */
     Date(unsigned d, Month m, unsigned y);
 
 
@@ -54,16 +72,48 @@ public:
     unsigned getYear() const;
 
 
+    /**
+     * @brief (pre)increment the day of a date by one
+     *
+     * @return date incremented by one day
+     */
     Date &operator++();
 
+    /**
+     * @brief (post)increment the day of a date by one
+     *
+     * @return date before incrementation
+     */
     Date operator++(int);
 
+    /**
+     * @brief add x days to a date (Date + nb_days)
+     *
+     * @param DAYS to add to date
+     * @return date increased by given number of days
+     */
     Date operator+(const unsigned DAYS) const;
 
+    /**
+     * @brief (pre)decrease the day of a date by one
+     *
+     * @return date decreased by one day
+     */
     Date &operator--();
 
+    /**
+     * @brief (post)decrease the day of a date by one
+     *
+     * @return date decreased by one day
+     */
     Date operator--(int);
 
+    /**
+     * @brief remove x days to a date (Date - nb_days)
+     *
+     * @param DAYS to remove to date
+     * @return date decreased by given number of days
+     */
     Date operator-(const unsigned DAYS) const;
 
     friend std::ostream &operator<<(std::ostream &os, const Date &DATE);
@@ -80,11 +130,27 @@ public:
 
     friend bool operator==(const Date &L_DATE, const Date &R_DATE);
 
+    /**
+     * @brief add x days to a date (nb_days + Date)
+     *
+     * @param DAYS to add to date
+     * @param DATE to increase
+     * @return date increased by given number of days
+     */
     friend Date operator+(const unsigned DAYS, const Date &DATE);
 
+    /**
+     * @brief remove x days to a date (nb_days - Date)
+     *
+     * @param DAYS to remove to date
+     * @param DATE to decrease
+     * @return date decreased by given number of days
+     */
     friend Date operator-(const unsigned DAYS, const Date &DATE);
 
 private:
+    // 1852 was chosen as the min year because it is the year the Gregorian calendar was created
+    //  https://en.wikipedia.org/wiki/Gregorian_calendar
     static const unsigned MIN_YEAR = 1852;
     static const unsigned FIRST_MONTH = 1;
     static const unsigned LAST_MONTH = 12;
@@ -95,6 +161,14 @@ private:
     unsigned year;
     bool correct;
 
+    /**
+     * @brief CHeck if the current Date object is correct
+     *          i.e the day is between 1 and getMonthLength
+     *              the month is between 1 and 12
+     *              and the year is greater than 1852.
+     *              
+     * @return true if the date is correct otherwise false
+     */
     bool isCorrect() const;
 
     /**
