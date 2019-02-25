@@ -190,6 +190,7 @@ Date operator-(const unsigned DAYS, const Date &DATE) {
 
 ostream &operator<<(ostream &os, const Date &DATE) {
     if (DATE.correct) {
+        // Careful to put a 0 first for 1-9 digits
         string strDay = (DATE.day < 10) ? "0" + to_string(DATE.day) : to_string(DATE.day);
         string strMonth = (DATE.month < 10) ? "0" + to_string(DATE.month) : to_string(DATE.month);
 
@@ -273,7 +274,7 @@ bool operator>=(const Date &L_DATE, const Date &R_DATE) {
 }
 
 bool operator==(const Date &L_DATE, const Date &R_DATE) {
-    return (L_DATE <= R_DATE) and (L_DATE >= R_DATE);
+    return (L_DATE <= R_DATE) and (L_DATE >= R_DATE); // if a <= b  and  a >= b, a has to be equal to b
 }
 
 

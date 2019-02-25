@@ -41,7 +41,7 @@ public:
     Date(unsigned d, unsigned m, unsigned y);
 
     /**
-     * @brief Constrcutoe with unsigned values and enum for the month
+     * @brief Constructor with unsigned values and enum for the month
      *
      * @param d day of the date
      * @param m month of the date as a Month enum
@@ -135,7 +135,8 @@ public:
     friend std::istream &operator>>(std::istream &is, Date &date);
 
     /**
-     * @brief Compare if the left Date is lower than the right Date
+     * @brief Compare if the left Date is lower than the right Date. The comparison is made
+     * by the whole date (day, month, year). e.g : 01.01.2000 is lower than 02.03.2000
      *
      * @param L_Date The left Date object
      * @param R_DATE The Right Date object
@@ -145,6 +146,7 @@ public:
 
     /**
      * @brief Compare if the left Date is greater than the right Date
+     * @details To do that, we use the "<" override operator
      *
      * @param L_Date The left Date object
      * @param R_DATE The right Date object
@@ -154,6 +156,7 @@ public:
 
     /**
      * @brief Compare if the left Date is lower or equal than the right Date
+     * @details To do that, we use the ">" override operator
      *
      * @param L_Date The left Date object
      * @param R_DATE The right Date object
@@ -163,6 +166,7 @@ public:
 
     /**
      * @brief Compare if the left Date is greater or equal than the right Date
+     * @details To do that, we use the "<" override operator
      *
      * @param L_Date The left Date object
      * @param R_DATE The right Date object
@@ -172,6 +176,7 @@ public:
 
     /**
      * @brief Compare if the left Date equals the right Date
+     * @details To do that, we use the "<=" and ">=" override operators
      *
      * @param L_Date The left Date object
      * @param R_DATE The right Date object
