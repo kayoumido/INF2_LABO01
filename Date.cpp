@@ -100,16 +100,6 @@ unsigned Date::getYear() const {
     return year;
 }
 
-Date &Date::operator=(const Date &date) {
-
-    this->day = date.day;
-    this->month = date.month;
-    this->year = date.year;
-    this->correct = date.correct;
-
-    return *this;
-}
-
 Date &Date::operator++() {
 
     day++;

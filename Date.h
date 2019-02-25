@@ -46,9 +46,6 @@ public:
     std::string getMonthString() const;
     unsigned getYear() const;
 
-
-    Date& operator =(const Date& date);
-
     Date& operator ++();
     Date operator ++(int);
     Date operator +(const unsigned& day) const;
