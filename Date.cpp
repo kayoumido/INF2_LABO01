@@ -1,5 +1,13 @@
-/**
- * TODO header
+/*
+-----------------------------------------------------------------------------------
+Laboratoire : Labo01
+Fichier     : Date.cpp
+Auteur(s)   : Loic Dessaules, Doran Kayoumi
+Date        : 25.02.2019
+But         : Contient la définition des variables, méthodes, fonctions amies de la classe Date
+Remarque(s) : -
+Compilateur : g++ <8.2.1>
+-----------------------------------------------------------------------------------
  */
 
 #include "Date.h"
@@ -90,6 +98,8 @@ Month Date::getMonthEnum() const {
             return Month::NOVEMBER;
         case 12:
             return Month::DECEMBER;
+        default:
+            return Month::JANUARY;
     }
 }
 

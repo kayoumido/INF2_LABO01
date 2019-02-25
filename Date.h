@@ -1,5 +1,13 @@
-/**
- * TODO header
+/*
+-----------------------------------------------------------------------------------
+Laboratoire : Labo01
+Fichier     : Date.h
+Auteur(s)   : Loic Dessaules, Doran Kayoumi
+Date        : 25.02.2019
+But         : Contient la déclaration de la classe Date et de ces variables, methodes, fonction amies
+Remarque(s) : -
+Compilateur : g++ <8.2.1>
+-----------------------------------------------------------------------------------
  */
 
 #ifndef DATE_H
