@@ -94,7 +94,7 @@ private:
      * @param monthIndex
      * @return The total number of days contains in the month
      */
-    unsigned getMonthLength() const ;
+    unsigned getMonthLength() const;
 };
 
 

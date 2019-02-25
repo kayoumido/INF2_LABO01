@@ -277,7 +277,7 @@ bool operator == (const Date& L_DATE, const Date& R_DATE) {
 }
 
 bool Date::isCorrect() const {
-    return day >= 1 and day < getMonthLength() and
+    return day >= 1 and day <= getMonthLength() and
            month >= Date::FIRST_MONTH and
            month <= Date::LAST_MONTH and
            year >= Date::MIN_YEAR;
