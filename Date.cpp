@@ -14,6 +14,7 @@ const vector<string> STR_MONTHS{"january", "february", "march", "april", "may", 
 const string INVALID_MSG = "invalide";
 const char DELIMITER = '.';
 
+
 Date::Date() : day(1), month(1), year(1970), correct(true) {}
 
 Date::Date(unsigned d, unsigned m, unsigned y) {
@@ -33,11 +34,11 @@ Date::Date(unsigned d, Month m, unsigned y) {
 }
 
 
-void Date::setDay(const unsigned &DAY) {
+void Date::setDay(const unsigned DAY) {
     day = DAY;
 }
 
-void Date::setMonth(const unsigned &MONTH) {
+void Date::setMonth(const unsigned MONTH) {
     month = MONTH;
 }
 
@@ -50,7 +51,7 @@ void Date::setMonth(const string &MONTH) {
     month = (unsigned) distance(STR_MONTHS.begin(), it) + 1;
 }
 
-void Date::setYear(const unsigned &YEAR) {
+void Date::setYear(const unsigned YEAR) {
     year = YEAR;
 }
 
@@ -100,6 +101,7 @@ unsigned Date::getYear() const {
     return year;
 }
 
+
 Date &Date::operator++() {
 
     day++;
@@ -125,17 +127,17 @@ Date Date::operator++(int) {
     return temp;
 }
 
-Date Date::operator+(const unsigned &day) const {
+Date Date::operator+(const unsigned DAY) const {
     Date temp = *this;
 
-    for (int i = 0; i < day; ++i)
+    for (unsigned i = 0; i < DAY; ++i)
         ++temp;
 
     return temp;
 }
 
-Date operator+(unsigned days, const Date &date) {
-    return date + days;
+Date operator+(const unsigned days, const Date &DATE) {
+    return DATE + days;
 }
 
 Date &Date::operator--() {
@@ -167,17 +169,17 @@ Date Date::operator--(int) {
     return temp;
 }
 
-Date Date::operator-(const unsigned &day) const {
+Date Date::operator-(const unsigned DAY) const {
     Date temp = *this;
 
-    for (int i = 0; i < day; ++i)
+    for (unsigned i = 0; i < DAY; ++i)
         --temp;
 
     return temp;
 }
 
-Date operator-(unsigned days, const Date &date) {
-    return date - days;
+Date operator-(const unsigned days, const Date &DATE) {
+    return DATE - days;
 }
 
 ostream &operator<<(ostream &os, const Date &DATE) {
@@ -232,16 +234,16 @@ istream &operator>>(istream &is, Date &date) {
     return is;
 }
 
-bool operator < (const Date& L_DATE, const Date& R_DATE) {
+bool operator<(const Date &L_DATE, const Date &R_DATE) {
     bool result = false;
 
-    if(L_DATE.year < R_DATE.year) {
+    if (L_DATE.year < R_DATE.year) {
         result = true;
-    }else if(L_DATE.year == R_DATE.year) {
-        if(L_DATE.month < R_DATE.month){
+    } else if (L_DATE.year == R_DATE.year) {
+        if (L_DATE.month < R_DATE.month) {
             result = true;
-        }else if(L_DATE.month == R_DATE.month) {
-            if(L_DATE.day < R_DATE.day) {
+        } else if (L_DATE.month == R_DATE.month) {
+            if (L_DATE.day < R_DATE.day) {
                 result = true;
             }
         }
@@ -250,21 +252,22 @@ bool operator < (const Date& L_DATE, const Date& R_DATE) {
     return result;
 }
 
-bool operator > (const Date& L_DATE, const Date& R_DATE) {
+bool operator>(const Date &L_DATE, const Date &R_DATE) {
     return R_DATE < L_DATE;
 }
 
-bool operator <= (const Date& L_DATE, const Date& R_DATE) {
+bool operator<=(const Date &L_DATE, const Date &R_DATE) {
     return !(L_DATE > R_DATE);
 }
 
-bool operator >= (const Date& L_DATE, const Date& R_DATE) {
+bool operator>=(const Date &L_DATE, const Date &R_DATE) {
     return !(L_DATE < R_DATE);
 }
 
-bool operator == (const Date& L_DATE, const Date& R_DATE) {
+bool operator==(const Date &L_DATE, const Date &R_DATE) {
     return (L_DATE <= R_DATE) and (L_DATE >= R_DATE);
 }
+
 
 bool Date::isCorrect() const {
     return day >= 1 and day <= getMonthLength() and

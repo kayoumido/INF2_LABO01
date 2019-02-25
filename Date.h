@@ -25,46 +25,70 @@ enum class Month {
 
 class Date {
 public:
+    Date();
+
+    Date(unsigned d, unsigned m, unsigned y);
+
+    Date(unsigned d, Month m, unsigned y);
+
+
+    void setDay(const unsigned DAY);
+
+    void setMonth(const unsigned MONTH);
+
+    void setMonth(const Month &m);
+
+    void setMonth(const std::string &MONTH);
+
+    void setYear(const unsigned YEAR);
+
+
+    unsigned getDay() const;
+
+    unsigned getMonth() const;
+
+    Month getMonthEnum() const;
+
+    std::string getMonthString() const;
+
+    unsigned getYear() const;
+
+    Date &operator++();
+
+    Date operator++(int);
+
+    Date operator+(const unsigned DAY) const;
+
+    Date &operator--();
+
+    Date operator--(int);
+
+    Date operator-(const unsigned DAY) const;
+
+    friend std::ostream &operator<<(std::ostream &os, const Date &DATE);
+
+    friend std::istream &operator>>(std::istream &is, Date &date);
+
+    friend bool operator<(const Date &L_Date, const Date &R_DATE);
+
+    friend bool operator>(const Date &L_Date, const Date &R_DATE);
+
+    friend bool operator<=(const Date &L_Date, const Date &R_DATE);
+
+    friend bool operator>=(const Date &L_Date, const Date &R_DATE);
+
+    friend bool operator==(const Date &L_DATE, const Date &R_DATE);
+
+    friend Date operator+(const unsigned days, const Date &DATE);
+
+    friend Date operator-(const unsigned days, const Date &DATE);
+
+private:
     static const unsigned MIN_YEAR = 1852;
     static const unsigned FIRST_MONTH = 1;
     static const unsigned LAST_MONTH = 12;
 
 
-    Date();
-    Date(unsigned d, unsigned m, unsigned y);
-    Date(unsigned d, Month m, unsigned y);
-
-    void setDay(const unsigned& DAY);
-    void setMonth(const unsigned& MONTH);
-    void setMonth(const Month& m);
-    void setMonth(const std::string& MONTH);
-    void setYear(const unsigned& YEAR);
-
-    unsigned getDay() const;
-    unsigned getMonth() const;
-    Month getMonthEnum() const;
-    std::string getMonthString() const;
-    unsigned getYear() const;
-
-    Date& operator ++();
-    Date operator ++(int);
-    Date operator +(const unsigned& day) const;
-
-    Date& operator --();
-    Date operator --(int);
-    Date operator -(const unsigned& day) const;
-
-    friend std::ostream& operator << (std::ostream& os, const Date& DATE);
-    friend std::istream& operator >> (std::istream& is, Date& STR_DATE);
-    friend bool operator < (const Date& L_Date, const Date& R_DATE);
-    friend bool operator > (const Date& L_Date, const Date& R_DATE);
-    friend bool operator <= (const Date& L_Date, const Date& R_DATE);
-    friend bool operator >= (const Date& L_Date, const Date& R_DATE);
-    friend bool operator == (const Date& L_DATE, const Date& R_DATE);
-    friend Date operator + (unsigned days, const Date& date);
-    friend Date operator - (unsigned days, const Date& date);
-
-private:
     unsigned day;
     unsigned month;
     unsigned year;
@@ -83,7 +107,7 @@ private:
      * @param year unsigned The year which will be checked
      * @return bool Is or isn't a leap year
      */
-    bool isLeapYear() const ;
+    bool isLeapYear() const;
 
     /**
      * @brief Return the total number of days contain in the month of a specific year
@@ -95,4 +119,4 @@ private:
 };
 
 
-#endif DATE_H
+#endif
