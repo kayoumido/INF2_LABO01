@@ -128,20 +128,20 @@ Date Date::operator++(int) {
     return temp;
 }
 
-Date Date::operator+(const unsigned DAY) const {
+Date Date::operator+(const unsigned DAYS) const {
 
     Date temp = *this;
 
     if (isCorrect()) {
-        for (unsigned i = 0; i < DAY; ++i)
+        for (unsigned i = 0; i < DAYS; ++i)
             ++temp;
     }
 
     return temp;
 }
 
-Date operator+(const unsigned days, const Date &DATE) {
-    return DATE + days;
+Date operator+(const unsigned DAYS, const Date &DATE) {
+    return DATE + DAYS;
 }
 
 Date &Date::operator--() {
@@ -174,18 +174,18 @@ Date Date::operator--(int) {
     return temp;
 }
 
-Date Date::operator-(const unsigned DAY) const {
+Date Date::operator-(const unsigned DAYS) const {
     Date temp = *this;
     if (isCorrect()) {
-        for (unsigned i = 0; i < DAY; ++i)
+        for (unsigned i = 0; i < DAYS; ++i)
             --temp;
     }
 
     return temp;
 }
 
-Date operator-(const unsigned days, const Date &DATE) {
-    return DATE - days;
+Date operator-(const unsigned DAYS, const Date &DATE) {
+    return DATE - DAYS;
 }
 
 ostream &operator<<(ostream &os, const Date &DATE) {

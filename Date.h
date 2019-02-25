@@ -53,17 +53,18 @@ public:
 
     unsigned getYear() const;
 
+
     Date &operator++();
 
     Date operator++(int);
 
-    Date operator+(const unsigned DAY) const;
+    Date operator+(const unsigned DAYS) const;
 
     Date &operator--();
 
     Date operator--(int);
 
-    Date operator-(const unsigned DAY) const;
+    Date operator-(const unsigned DAYS) const;
 
     friend std::ostream &operator<<(std::ostream &os, const Date &DATE);
 
@@ -79,9 +80,9 @@ public:
 
     friend bool operator==(const Date &L_DATE, const Date &R_DATE);
 
-    friend Date operator+(const unsigned days, const Date &DATE);
+    friend Date operator+(const unsigned DAYS, const Date &DATE);
 
-    friend Date operator-(const unsigned days, const Date &DATE);
+    friend Date operator-(const unsigned DAYS, const Date &DATE);
 
 private:
     static const unsigned MIN_YEAR = 1852;
