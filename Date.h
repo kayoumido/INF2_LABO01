@@ -66,20 +66,69 @@ public:
 
     Date operator-(const unsigned DAYS) const;
 
+    /**
+     * @brief Display the date with this format : dd.mm.yyyy
+     *
+     * @param os The ostream (e.g : cout)
+     * @param DATE The date we want to display
+     * @return The current ostream to be able to chain multiples of them
+     */
     friend std::ostream &operator<<(std::ostream &os, const Date &DATE);
 
+    /**
+     * @brief Type a date (format : dd.mm.yyyy) and store into a Date object
+     *
+     * @param is The instream (e.g cin)
+     * @param date The Date object we want to put into the data typed
+     * @return The current istream to be able to chain multiples of them
+     */
     friend std::istream &operator>>(std::istream &is, Date &date);
 
+    /**
+     * @brief Compare if the left Date is lower than the right Date
+     *
+     * @param L_Date The left Date object
+     * @param R_DATE The Right Date object
+     * @return True if the left Date is lower than the right Date, false otherwise
+     */
     friend bool operator<(const Date &L_Date, const Date &R_DATE);
 
+    /**
+     * @brief Compare if the left Date is greater than the right Date
+     *
+     * @param L_Date The left Date object
+     * @param R_DATE The right Date object
+     * @return True if the left Date is greater than the right Date, false otherwise
+     */
     friend bool operator>(const Date &L_Date, const Date &R_DATE);
 
+    /**
+     * @brief Compare if the left Date is lower or equal than the right Date
+     *
+     * @param L_Date The left Date object
+     * @param R_DATE The right Date object
+     * @return True if the left Date is lower or equal than the right Date, false otherwise
+     */
     friend bool operator<=(const Date &L_Date, const Date &R_DATE);
 
+    /**
+     * @brief Compare if the left Date is greater or equal than the right Date
+     *
+     * @param L_Date The left Date object
+     * @param R_DATE The right Date object
+     * @return True if the left Date is greater or equal than the right Date, false otherwise
+     */
     friend bool operator>=(const Date &L_Date, const Date &R_DATE);
 
+    /**
+     * @brief Compare if the left Date equals the right Date
+     *
+     * @param L_Date The left Date object
+     * @param R_DATE The right Date object
+     * @return True if both dates are equal, false otherwise
+     */
     friend bool operator==(const Date &L_DATE, const Date &R_DATE);
-
+    
     friend Date operator+(const unsigned DAYS, const Date &DATE);
 
     friend Date operator-(const unsigned DAYS, const Date &DATE);
