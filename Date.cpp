@@ -104,18 +104,19 @@ unsigned Date::getYear() const {
 
 Date &Date::operator++() {
 
-    day++;
+    if (isCorrect()) {
+        day++;
 
-    if (day > getMonthLength()) {
-        day = day - getMonthLength();
-        month++;
+        if (day > getMonthLength()) {
+            day = day - getMonthLength();
+            month++;
 
-        if (month > Date::LAST_MONTH) {
-            month = Date::FIRST_MONTH;
-            year++;
+            if (month > Date::LAST_MONTH) {
+                month = Date::FIRST_MONTH;
+                year++;
+            }
         }
     }
-
     return *this;
 }
 
@@ -128,10 +129,13 @@ Date Date::operator++(int) {
 }
 
 Date Date::operator+(const unsigned DAY) const {
+
     Date temp = *this;
 
-    for (unsigned i = 0; i < DAY; ++i)
-        ++temp;
+    if (isCorrect()) {
+        for (unsigned i = 0; i < DAY; ++i)
+            ++temp;
+    }
 
     return temp;
 }
@@ -142,22 +146,23 @@ Date operator+(const unsigned days, const Date &DATE) {
 
 Date &Date::operator--() {
 
-    day--;
+    if (isCorrect()) {
+        day--;
 
-    if (day == 0) {
-        month--;
-        day = getMonthLength();
+        if (day == 0) {
+            month--;
+            day = getMonthLength();
 
-        if (month == 0) {
-            year--;
-            month = Date::LAST_MONTH;
+            if (month == 0) {
+                year--;
+                month = Date::LAST_MONTH;
 
-            if (year < Date::MIN_YEAR) {
-                correct = false;
+                if (year < Date::MIN_YEAR) {
+                    correct = false;
+                }
             }
         }
     }
-
     return *this;
 }
 
@@ -171,9 +176,10 @@ Date Date::operator--(int) {
 
 Date Date::operator-(const unsigned DAY) const {
     Date temp = *this;
-
-    for (unsigned i = 0; i < DAY; ++i)
-        --temp;
+    if (isCorrect()) {
+        for (unsigned i = 0; i < DAY; ++i)
+            --temp;
+    }
 
     return temp;
 }
@@ -237,14 +243,16 @@ istream &operator>>(istream &is, Date &date) {
 bool operator<(const Date &L_DATE, const Date &R_DATE) {
     bool result = false;
 
-    if (L_DATE.year < R_DATE.year) {
-        result = true;
-    } else if (L_DATE.year == R_DATE.year) {
-        if (L_DATE.month < R_DATE.month) {
+    if (L_DATE.isCorrect() and R_DATE.isCorrect()) {
+        if (L_DATE.year < R_DATE.year) {
             result = true;
-        } else if (L_DATE.month == R_DATE.month) {
-            if (L_DATE.day < R_DATE.day) {
+        } else if (L_DATE.year == R_DATE.year) {
+            if (L_DATE.month < R_DATE.month) {
                 result = true;
+            } else if (L_DATE.month == R_DATE.month) {
+                if (L_DATE.day < R_DATE.day) {
+                    result = true;
+                }
             }
         }
     }
