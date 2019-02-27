@@ -1,6 +1,6 @@
 /*
 -----------------------------------------------------------------------------------
-Laboratoire : Labo01
+Laboratoire : Labo01 - Date
 Fichier     : Date.cpp
 Auteur(s)   : Loic Dessaules, Doran Kayoumi
 Date        : 25.02.2019

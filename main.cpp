@@ -1,7 +1,7 @@
 
 /*
 -----------------------------------------------------------------------------------
-Laboratoire : Labo01
+Laboratoire : Labo01 - Date
 Fichier     : main.cpp
 Auteur(s)   : Loic Dessaules, Doran Kayoumi
 Date        : 25.02.2019

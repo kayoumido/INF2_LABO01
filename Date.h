@@ -1,6 +1,6 @@
 /*
 -----------------------------------------------------------------------------------
-Laboratoire : Labo01
+Laboratoire : Labo01 - Date
 Fichier     : Date.h
 Auteur(s)   : Loic Dessaules, Doran Kayoumi
 Date        : 25.02.2019
@@ -14,7 +14,6 @@ Compilateur : g++ <8.2.1>
 #define DATE_H
 
 #include <string>
-#include <iostream>
 
 enum class Month {
     JANUARY = 1,
