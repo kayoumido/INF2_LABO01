@@ -204,9 +204,9 @@ ostream &operator<<(ostream &os, const Date &DATE) {
         string strDay = (DATE.day < 10) ? "0" + to_string(DATE.day) : to_string(DATE.day);
         string strMonth = (DATE.month < 10) ? "0" + to_string(DATE.month) : to_string(DATE.month);
 
-        cout << strDay << "." << strMonth << "." << DATE.year;
+        os << strDay << "." << strMonth << "." << DATE.year;
     } else {
-        cout << INVALID_MSG;
+        os << INVALID_MSG;
     }
 
     return os;
